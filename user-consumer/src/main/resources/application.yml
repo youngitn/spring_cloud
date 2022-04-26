@@ -1,0 +1,48 @@
+server:
+  port: 8004
+
+#feign:
+#  hystrix:
+#    enabled: true
+
+feign:
+  httpclient:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types:
+        - text/xml
+        - application/xml
+        - application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+      
+spring:
+  application:
+    name: user-consumer
+  
+#設定服務註冊中心的URL，用於client和server端交流
+eureka:
+  client:
+    service-url:
+      defaultZone: 
+        http://ytc:ytc@eurekaServer1:8761/eureka,
+        http://ytc:ytc@eurekaServer2:8762/eureka ##Eureka Server的位址
+  instance:
+    prefer-ip-address: true  
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}   
+
+ribbon:
+  eager-load:
+    # 开启ribbon饥饿加载，源码对应属性配置类：RibbonEagerLoadProperties
+    enabled: true
+    # 配置mall-user使用ribbon饥饿加载，多个使用逗号分隔
+    clients: user-provider
+#    ConnectTimeout: 500 
+#    ReadTimeOut: 5000
+logging:
+  level:
+    com.alibaba.cloud.service.UserServiceFeign: DEBUG
+  

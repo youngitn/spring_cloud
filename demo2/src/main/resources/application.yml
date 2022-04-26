@@ -1,0 +1,16 @@
+eureka:
+  instance:
+#    prefer-ip-address: true #不用dns用ip的話要設true
+    hostname: eurekaServer2 #本幾架設叢集用dns做server識別 記得先去hosts設定
+  server:
+#    renewal-percent-threshold: 0.45
+    enableSelfPreservation: false
+    waitTimeInMsWhenSyncEmpty: 0
+  client:
+    registerWithEureka: true #作為叢集的話設為true
+    fetchRegistry: true      #作為叢集的話設為true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      #defaultZone: http://ytc:ytc@${eureka.instance.hostname}:${server.port}/eureka/ ##Eureka Server的位址
+      defaultZone: http://ytc:ytc@eurekaServer1:8761/eureka ##Eureka Server的位址

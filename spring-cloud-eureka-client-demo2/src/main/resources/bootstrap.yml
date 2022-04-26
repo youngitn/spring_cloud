@@ -1,0 +1,6 @@
+# Spring properties
+spring:
+  config:
+    uri: http://localhost:8888
+  application:
+    name: user-provider #服務名稱

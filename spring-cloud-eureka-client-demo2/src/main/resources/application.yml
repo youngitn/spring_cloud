@@ -1,0 +1,19 @@
+# Spring properties
+spring:
+  application:
+     name: user-provider #服務名稱
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+       defaultZone: http://ytc:ytc@eurekaServer1:8761/eureka,http://ytc:ytc@eurekaServer2:8762/eureka ##Eureka Server的位址
+  instance:
+    prefer-ip-address: true  
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    
+       
+# HTTP Server
+server:
+  port: 8002   # HTTP (Tomcat) port #服務的埠號
+
+  

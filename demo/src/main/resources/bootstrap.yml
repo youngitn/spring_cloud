@@ -1,0 +1,13 @@
+spring:
+  config:
+    uri: http://localhost:8888
+  application:
+    name: eurekaServer #作為叢集的話spring.application.name要一致
+  security:
+    basic:
+      enabled: true
+    user: 
+      name: ytc
+      password: ytc
+server:
+  port: 8761
